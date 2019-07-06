@@ -7,54 +7,15 @@
     </div>
     <div class="row">
       <div class="col-12">
-        <OpponentCard hand="game.opponent.hand" />
-      </div>
-    </div>
-    <div class="row" style="margin-bottom: 15vh;">
-      <div class="col-3 d-flex justify-content-center">
-        <a class="btn" style="height: 200px; width: 200px; padding: 0%;" href="#">
-          <img style="height: 100%; width: 100%;" src="https://via.placeholder.com/200.png" alt="">
-        </a>
-
-      </div>
-      <div class="col-3 d-flex justify-content-center">
-        <a class="btn" style="height: 200px; width: 200px; padding: 0%;" href="#">
-          <img style="height: 100%; width: 100%;" src="https://via.placeholder.com/200.png" alt="">
-        </a>
-      </div>
-      <div class="col-3 d-flex justify-content-center">
-        <a class="btn" style="height: 200px; width: 200px; padding: 0%;" href="#">
-          <img style="height: 100%; width: 100%;" src="https://via.placeholder.com/200.png" alt="">
-        </a>
-      </div>
-      <div class="col-3 d-flex justify-content-center">
-        <a class="btn" style="height: 200px; width: 200px; padding: 0%;" href="#">
-          <img style="height: 100%; width: 100%;" src="https://via.placeholder.com/200.png" alt="">
-        </a>
+        <PlayerCard v-bind:hand="game.player.hand" />
       </div>
     </div>
     <div class="row">
-      <div class="col-3 d-flex justify-content-center">
-        <a class="btn" style="height: 200px; width: 200px; padding: 0%;" href="#">
-          <img style="height: 100%; width: 100%;" src="https://via.placeholder.com/200.png" alt="">
-        </a>
-      </div>
-      <div class="col-3 d-flex justify-content-center">
-        <a class="btn" style="height: 200px; width: 200px; padding: 0%;" href="#">
-          <img style="height: 100%; width: 100%;" src="https://via.placeholder.com/200.png" alt="">
-        </a>
-      </div>
-      <div class="col-3 d-flex justify-content-center">
-        <a class="btn" style="height: 200px; width: 200px; padding: 0%;" href="#">
-          <img style="height: 100%; width: 100%;" src="https://via.placeholder.com/200.png" alt="">
-        </a>
-      </div>
-      <div class="col-3 d-flex justify-content-center">
-        <a class="btn" style="height: 200px; width: 200px; padding: 0%;" href="#">
-          <img style="height: 100%; width: 100%;" src="https://via.placeholder.com/200.png" alt="">
-        </a>
+      <div class="col-12">
+        <OpponentCard v-bind:hand="game.opponent.hand" />
       </div>
     </div>
+    
 
   </div>
 </template>
@@ -62,6 +23,7 @@
 
 <script>
   import OpponentCard from '../components/OpponentCard';
+  import PlayerCard from '../components/PlayerCard';
 
   export default {
     name: 'Game',
@@ -75,7 +37,8 @@
       }
     },
     components: {
-      OpponentCard
+      OpponentCard,
+      PlayerCard
     },
     methods: {
       consoleLog() {
