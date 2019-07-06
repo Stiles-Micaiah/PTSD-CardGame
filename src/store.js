@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
-
+import router from './router.js'
 Vue.use(Vuex)
 
 const api = axios.create({
@@ -37,8 +37,8 @@ export default new Vuex.Store({
     getGame({ commit, dispatch }, id) {
       api.get('' + id)
         .then(res => {
-          commit('activeGame', res.data)
-          console.log(res)
+          commit('setActiveGame', res.data.data)
+          console.log('getGame output', res, 'game obj', res.data.data)
         })
         .catch(err => {
           console.log(err)
@@ -47,8 +47,9 @@ export default new Vuex.Store({
     createGame({ commit, dispatch }, data) {
       api.post('', data)
         .then(res => {
-          commit('setActiveGame', res)
-          console.log('createGame output', res)
+          commit('setActiveGame', res.data.game)
+          router.push({ name: 'game', params: { id: res.data.game.id } })
+          console.log('createGame output', res, 'res.data.game is commited')
         })
         .catch(err => {
           console.error(err)
