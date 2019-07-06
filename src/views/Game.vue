@@ -7,7 +7,7 @@
     </div>
     <div class="row">
       <div class="col-12">
-        <opponentcard :cards='game.opponent.hand' />
+        <OpponentCard hand="game.opponent.hand" />
       </div>
     </div>
     <div class="row" style="margin-bottom: 15vh;">
@@ -61,7 +61,8 @@
 
 
 <script>
-  import OpponentCard from '@/components/OpponentCard.vue';
+  import OpponentCard from '../components/OpponentCard';
+
   export default {
     name: 'Game',
     props: ["id"],
@@ -78,7 +79,7 @@
     },
     methods: {
       consoleLog() {
-        console.log('console.log(', this.game, ')')
+        console.log('console.log(', this.game.opponent.hand, ')')
       }
     }
 
