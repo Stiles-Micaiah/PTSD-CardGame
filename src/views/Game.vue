@@ -1,21 +1,26 @@
 <template>
   <div class="GameView container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <h1>{{game.player.name}} VS {{game.opponent.name}}</h1>
+      </div>
+    </div>
     <div class="row d-flex justify-content-center">
       <div class="col-3 d-flex justify-content-center" style="margin-bottom: 150px;">
-        <button @click="consoleLog()" class="btn btn-block btn-lg btn-info">Attack</button>
+        <button @click="attackShizzie()" class="btn btn-block btn-lg btn-info">Attack</button>
       </div>
     </div>
     <div class="row">
       <div class="col-12">
-        <PlayerCard v-bind:hand="game.player.hand" />
+        <PlayerCard v-on:playerSelect="isPlayer" v-bind:hand="game.player.hand" />
       </div>
     </div>
-    <div class="row">
-      <div class="col-12">
-        <OpponentCard v-bind:hand="game.opponent.hand" />
+    <div class="row d-flex justify-content-center">
+      <div class="col-9">
+        <OpponentCard v-on:opponentSelect="isOpponent" v-bind:hand="game.opponent.hand" />
       </div>
     </div>
-    
+
 
   </div>
 </template>
@@ -28,6 +33,14 @@
   export default {
     name: 'Game',
     props: ["id"],
+    data() {
+      return {
+        attackObj: {
+          playerCardId: "",
+          opponentCardId: ""
+        }
+      }
+    },
     mounted() {
       this.$store.dispatch('getGame', this.id)
     },
@@ -42,7 +55,29 @@
     },
     methods: {
       consoleLog() {
-        console.log('console.log(', this.game.opponent.hand, ')')
+        console.log('console.log(', this.attackObj, ')')
+      },
+      attackShizzie() {
+        let Shizzie = {
+          attackses: this.attackObj,
+          id: this.id
+        }
+        this.$store.dispatch('attackShizzie', Shizzie)
+        this.$store.dispatch('getGame', this.id)
+        clear()
+        // this.$forceUpdate()
+      },
+      clear() {
+        this.attackObj.playerCardId = ""
+        this.attackObj.opponentCardId = ""
+      },
+      isPlayer(value) {
+        this.attackObj.playerCardId = value
+        console.log('you selected card' + this.attackObj.playerCardId)
+      },
+      isOpponent(value) {
+        this.attackObj.opponentCardId = value
+        console.log('your opponent selected' + this.attackObj.opponentCardId)
       }
     }
 

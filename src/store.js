@@ -12,7 +12,8 @@ const api = axios.create({
 export default new Vuex.Store({
   state: {
     games: [],
-    activeGame: {}
+    activeGame: {},
+    activeUser: ""
   },
   mutations: {
     setGames(state, data) {
@@ -20,6 +21,9 @@ export default new Vuex.Store({
     },
     setActiveGame(state, data) {
       state.activeGame = data
+    },
+    setActiveUser(state, data) {
+      state.activeUser = data
     }
 
   },
@@ -38,6 +42,16 @@ export default new Vuex.Store({
       api.get('' + id)
         .then(res => {
           commit('setActiveGame', res.data.data)
+          commit('setActiveUser', res.data.data.player.name)
+          if (res.data.data.winner) {
+            if (res.data.data.winner == this.state.activeUser) {
+              router.push({ name: 'winner', params: { isWinner: res.data.data.winner, img: "https://deow9bq0xqvbj.cloudfront.net/image-logo/2332469/winnerwinnerbanner.png" } })
+            }
+            else {
+              router.push({ name: 'winner', params: { isWinner: res.data.data.winner, img: "https://i1.wp.com/axtschmiede.com/wp-content/uploads/2017/09/Get-rid-of-a-Loser-Mindset.jpg?fit=844%2C1181" } })
+
+            }
+          }
           console.log('getGame output', res, 'game obj', res.data.data)
         })
         .catch(err => {
@@ -54,6 +68,18 @@ export default new Vuex.Store({
         .catch(err => {
           console.error(err)
         })
+    },
+    attackShizzie({ commit, dispatch }, data) {
+      api.put('' + data.id, data.attackses)
+        .then(res => {
+          console.log('updated game obj', res)
+        })
+        .catch(err => {
+          console.error(err)
+        })
+    },
+    restart({ commit, dispatch }) {
+      router.push({ name: 'home' })
     }
 
 
