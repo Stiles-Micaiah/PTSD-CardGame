@@ -16,15 +16,15 @@ self.__precacheManifest = [
     "url": "/ptsdgame/index.html"
   },
   {
-    "revision": "b6216d61c03e6ce0c9aea6ca7808f7ca",
-    "url": "/ptsdgame/robots.txt"
+    "revision": "bc50048d3b9426da7ad30b339125a747",
+    "url": "/ptsdgame/img/Get-rid-of-a-Loser-Mindset.jpg"
   },
   {
     "revision": "185d5ab2e18c32dc4b87ee2d944f4120",
     "url": "/ptsdgame/img/winnerwinnerbanner.png"
   },
   {
-    "revision": "bc50048d3b9426da7ad30b339125a747",
-    "url": "/ptsdgame/img/Get-rid-of-a-Loser-Mindset.jpg"
+    "revision": "b6216d61c03e6ce0c9aea6ca7808f7ca",
+    "url": "/ptsdgame/robots.txt"
   }
 ];
