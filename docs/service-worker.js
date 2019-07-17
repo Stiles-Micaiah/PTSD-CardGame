@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/ptsdgame/precache-manifest.f9d3d02ff36fe972d69dc4c7be905613.js"
+  "/ptsdgame/precache-manifest.6f5580b8ec88036873d38d20142afd1f.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "hurtchild"});
